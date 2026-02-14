@@ -14,15 +14,11 @@ y1 = [(y*256-100)%2048 for y in range(6)]
 Z = 0.1 * np.sin(0.5 * (X-32)/4) * np.cos(0.5 * (Y-1024)/256)
 for i in range(6):
     Z += gaussian(16, y1[i], 2, 2, amp=0.3)
-#Z += gaussian(16,  1536, 1.5, 1, amp=0.5)
     Z += gaussian(48, y1[i], 2, 2, amp=0.2)
-#Z += gaussian(48, 1536, 0.5, 1.5, amp=0.5)
 
 # Optionally add a small background / noise
 #Z += 0.1 * np.sin(0.5 * (X-32)/4) * np.cos(0.5 * (Y-1024)/256)
 Z *= 2**10*80
-#print(X)
-#print(Y)
 print(np.max(Z))
 fig, ax = plt.subplots(figsize=(10, 10))
 im = ax.imshow(abs(Z), aspect=1/16)
@@ -34,9 +30,6 @@ ax.set_title("Amplitude in Doppler and Angle domain 2D plot")
 ax.set_xlabel("Angle")
 ax.set_ylabel("Doppler")
 plt.savefig("amplitude_2D")
-#plt.show()
-#exit()
-
 
 # 3. Plot the surface
 fig = plt.figure(figsize=(10, 10))
